@@ -38,6 +38,8 @@ namespace CheckSumTool.SumLib
         SHA1,
         MD5,
         CRC32,
+        CRC64_ECMA,
+        CRC64_ISO,
     }
 
     /// <summary>
@@ -48,7 +50,7 @@ namespace CheckSumTool.SumLib
         /// <summary>
         /// String names for available checksum implementations.
         /// </summary>
-        public static readonly string[] SumNames = { "SHA-1", "MD5", "CRC32", };
+        public static readonly string[] SumNames = { "SHA-1", "MD5", "CRC32", "CRC64 (ECMA)", "CRC64 (ISO)", };
 
         /// <summary>
         /// Get checksum calculator for given checksum type.
@@ -58,17 +60,29 @@ namespace CheckSumTool.SumLib
         public static ICheckSum GetImplementation(CheckSumType impl)
         {
             ICheckSum sum;
+
             switch (impl)
             {
                 case CheckSumType.SHA1:
                     sum = new Sha1Sum();
                     break;
+
                 case CheckSumType.MD5:
                     sum = new Md5Sum();
                     break;
+
                 case CheckSumType.CRC32:
                     sum = new CRC32Sum();
                     break;
+
+                case CheckSumType.CRC64_ECMA:
+                    sum = new CRC64ECMASum();
+                    break;
+
+                case CheckSumType.CRC64_ISO:
+                    sum = new CRC64ISOSum();
+                    break;
+
                 default:
                     sum = new Sha1Sum();
 #if DEBUG
@@ -77,6 +91,7 @@ namespace CheckSumTool.SumLib
                     break;
 #endif
             }
+
             return sum;
         }
 
@@ -103,8 +118,7 @@ namespace CheckSumTool.SumLib
         public void GetSHA1Imp()
         {
             ICheckSum impl = CheckSumImplList.GetImplementation(
-                CheckSumType.SHA1);
-
+                                 CheckSumType.SHA1);
             Assert.IsNotNull(impl);
             Assert.IsInstanceOf<Sha1Sum>(impl);
         }
@@ -113,8 +127,7 @@ namespace CheckSumTool.SumLib
         public void GetMD5Imp()
         {
             ICheckSum impl = CheckSumImplList.GetImplementation(
-                CheckSumType.MD5);
-
+                                 CheckSumType.MD5);
             Assert.IsNotNull(impl);
             Assert.IsInstanceOf<Md5Sum>(impl);
         }
@@ -123,8 +136,7 @@ namespace CheckSumTool.SumLib
         public void GetCRC32Imp()
         {
             ICheckSum impl = CheckSumImplList.GetImplementation(
-                CheckSumType.CRC32);
-
+                                 CheckSumType.CRC32);
             Assert.IsNotNull(impl);
             Assert.IsInstanceOf<CRC32Sum>(impl);
         }
@@ -133,8 +145,7 @@ namespace CheckSumTool.SumLib
         public void GetSHA1Name()
         {
             string name = CheckSumImplList.GetImplementationName(
-                CheckSumType.SHA1);
-
+                              CheckSumType.SHA1);
             Assert.IsNotNull(name);
             Assert.AreEqual("SHA-1", name);
         }
@@ -143,8 +154,7 @@ namespace CheckSumTool.SumLib
         public void GetMD5Name()
         {
             string name = CheckSumImplList.GetImplementationName(
-                CheckSumType.MD5);
-
+                              CheckSumType.MD5);
             Assert.IsNotNull(name);
             Assert.AreEqual("MD5", name);
         }
@@ -153,8 +163,7 @@ namespace CheckSumTool.SumLib
         public void GetCRC32Name()
         {
             string name = CheckSumImplList.GetImplementationName(
-                CheckSumType.CRC32);
-
+                              CheckSumType.CRC32);
             Assert.IsNotNull(name);
             Assert.AreEqual("CRC32", name);
         }

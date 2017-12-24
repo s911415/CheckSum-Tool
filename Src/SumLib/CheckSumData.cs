@@ -51,7 +51,10 @@ namespace CheckSumTool.SumLib
         /// </summary>
         protected int DataSize
         {
-            set { _size = value; }
+            set
+            {
+                _size = value;
+            }
         }
 
         /// <summary>
@@ -73,12 +76,14 @@ namespace CheckSumTool.SumLib
         {
             if (data == null)
                 throw new ArgumentNullException("data");
+
             if (data.Length == 0)
                 throw new ArgumentException("Empty table as parameter.", "data");
+
             if (data.Length != _size)
             {
                 string msg = String.Format("Data size is invalid, must be {0} bytes",
-                    _size);
+                                           _size);
                 throw new ArgumentException(msg, "data");
             }
 
@@ -96,23 +101,27 @@ namespace CheckSumTool.SumLib
         {
             if (data == null)
                 throw new ArgumentNullException("data");
+
             if (data.Length == 0)
                 throw new ArgumentException("Empty string as parameter.", "data");
+
             if ((data.Length / 2) != _size)
             {
                 string msg = String.Format("Data size is invalid, must be {0} bytes",
-                    _size);
+                                           _size);
                 throw new ArgumentException(msg, "data");
             }
 
             byte[] bytes = new byte[data.Length / 2];
             int newIndex = 0;
+
             for (int i = 0; i < data.Length; i += 2)
             {
                 string conv = data.Substring(i, 2);
                 byte by = byte.Parse(conv, NumberStyles.HexNumber);
                 bytes[newIndex++] = by;
             }
+
             _data = bytes;
         }
 
@@ -134,10 +143,12 @@ namespace CheckSumTool.SumLib
                 return "";
 
             StringBuilder retString = new StringBuilder();
+
             foreach (byte by in _data)
             {
-                retString.AppendFormat("{0:x2}", by);
+                retString.AppendFormat("{0:X2}", by);
             }
+
             return retString.ToString();
         }
 

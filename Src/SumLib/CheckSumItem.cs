@@ -56,7 +56,7 @@ namespace CheckSumTool.SumLib
         /// Full path (full path + filename) for the item
         /// </summary>
         private string _fullPath;
-        
+
         /// <summary>
         /// Size for the item
         /// </summary>
@@ -89,17 +89,29 @@ namespace CheckSumTool.SumLib
         /// </summary>
         public string FullPath
         {
-            get { return _fullPath; }
-            set { _fullPath = value; }
+            get
+            {
+                return _fullPath;
+            }
+            set
+            {
+                _fullPath = value;
+            }
         }
-        
+
         /// <summary>
         /// Size for the item.
         /// </summary>
         public long Size
         {
-            get { return _size; }
-            set { _size = value; }
+            get
+            {
+                return _size;
+            }
+            set
+            {
+                _size = value;
+            }
         }
 
         /// <summary>
@@ -107,7 +119,10 @@ namespace CheckSumTool.SumLib
         /// </summary>
         public CheckSumData CheckSum
         {
-            get { return _checkSum; }
+            get
+            {
+                return _checkSum;
+            }
         }
 
         /// <summary>
@@ -115,8 +130,14 @@ namespace CheckSumTool.SumLib
         /// </summary>
         public VerificationState Verified
         {
-            get { return _verified; }
-            set { _verified = value; }
+            get
+            {
+                return _verified;
+            }
+            set
+            {
+                _verified = value;
+            }
         }
 
         /// <summary>
@@ -140,6 +161,8 @@ namespace CheckSumTool.SumLib
                 _checkSum = new CheckSumDataMD5(data);
             else if (data.Length == CheckSumDataCRC32.Length)
                 _checkSum = new CheckSumDataCRC32(data);
+            else if (data.Length == CheckSumDataCRC64.Length)
+                _checkSum = new CheckSumDataCRC64(data);
             else
                 throw new NotImplementedException();
         }
@@ -159,6 +182,8 @@ namespace CheckSumTool.SumLib
                 _checkSum = new CheckSumDataMD5(data);
             else if (data.Length == CheckSumDataCRC32.Length * 2)
                 _checkSum = new CheckSumDataCRC32(data);
+            else if (data.Length == CheckSumDataCRC64.Length * 2)
+                _checkSum = new CheckSumDataCRC64(data);
             else
                 throw new NotImplementedException();
         }
