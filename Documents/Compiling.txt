@@ -1,0 +1,84 @@
+Compiling CheckSumTool
+----------------------
+
+Sourceforge project page is:
+http://sourceforge.net/projects/checksumtool/
+
+Sources:
+CheckSumTool sources are available from Bitbucket Mercurial repository:
+https://bitbucket.org/kimmov/checksum-tool
+or in SourceForge file releases
+
+
+Tools needed:
+- Windows SDK for Windows 7 and .NET Framework 4:
+  http://go.microsoft.com/fwlink/?LinkID=191424 (ISO file)
+  http://go.microsoft.com/fwlink/?LinkID=191420 (Web install)
+- The project was created using SharpDevelop 2.2 (free .Net IDE),
+  and currently SharpDevelop 4.0 is used:
+  http://www.icsharpcode.net/OpenSource/SD/
+  Project/solution files are compatible with Visual Studio 2010, so you can use
+  either commercial version of Visual Studio or free Express edition:
+  http://www.microsoft.com/Express/
+- NSIS for compiling installer
+  http://nsis.sourceforge.net/
+- NUnit version 2.5 for unit testing
+  http://www.nunit.org/
+- MSBuild community tasks (for running NUnit etc)
+  http://msbuildtasks.tigris.org/
+
+Additional (and useful tools):
+- FxCop for checking coding errors:
+  http://msdn2.microsoft.com/en-us/library/bb429476.aspx
+- StyleCop for checking coding style:
+  http://code.msdn.microsoft.com/sourceanalysis
+
+  
+Compiling:
+- Open the solution file Src/CheckSumTool.sln to your IDE.
+- Compile the project.
+
+Compiling using MSbuild:
+- Open the Visual Studio or Windows SDK console
+- CD to Src folder
+- Run command 'MSBuild'
+
+
+The User Manual
+---------------
+
+User manual files reside in Documents/Manual.
+
+Manual uses AsciiDoc for lightweight markup that can be procecced to several other formats.
+AsciiDoc files are .txt files with some embedded markup.
+
+To process AsciiDoc files you'll need:
+- Python (2.6.x recommended) from http://www.python.org
+- AsciiDoc from http://www.methods.co.nz/asciidoc/
+
+Manual can be converted in command line:
+- open command prompt
+- go to Documents/Manual folder
+- run command:
+  > python [path to asciidoc]/asciidoc.py Manual.txt
+
+CheckSumTool's MSbuild build file also contains a task for building manual.
+
+
+Setting the Version Number
+--------------------------
+Version number is set in two places:
+
+- for executable program it is in end of file:
+  Src/AssemblyInfo.cs
+- for installer it is in begin of installer script:
+  Installer/NSIS/CheckSumTool.nsi
+
+
+Icons
+-----
+Checksum Tool uses icons from FamFamFam's Silk -collection:
+http://famfamfam.com/lab/icons/silk/
+
+These icons are licenced under Creative Commons Attribution 2.5 License
+(http://creativecommons.org/licenses/by/2.5/).

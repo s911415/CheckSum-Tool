@@ -1,0 +1,267 @@
+CheckSum Tool Manual
+====================
+Kimmo Varis
+v0.4, March 2011
+
+About this Manual
+-----------------
+This is user manual for the CheckSum Tool. It is still work in progress,
+as is the tool itself.
+
+The most important chapter is the Quick Start chapter which show how to
+get started with the CheckSum Tool. Other chapters have more in detail
+information about the tool.
+
+[[QuickStartCh]]
+Quick Start
+-----------
+The main window of the tool contains toolbar,list of filenames and checksums
+and statusbar. The toolbar has controls for most frequently used features,
+like creating and verifying checksums and changing checksum type. The file
+list contains filename (and some other attributes) and checksum for the file.
+The statusbar show some status information from the tool, like amount of
+files in the list.
+
+.The main window
+image:Images/MainWindow1.png[Main Window]
+
+The most frequently used features are explained shortly below:
+
+- opening checksum files
+- verifying checksums
+- adding files to the list
+- saving checksums to file
+
+Opening the File Containing Checksums
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+To open a file containing checksums, select _File | Open_ from main menu. Or
+click the _Open_ button in the toolbar. In the dialog, browse for and select
+the file to open. The filename must contain or have an extension one of +sfv+,
++md5+ or +sha1+. Otherwise CheckSum Tool does not recognize the file type.
+
+If the tool can read the file, files in the checksum file are added into
+the list in the main window. Checksums are visible, but the tool does not
+automatically verify them.
+
+Verifying the Checksums
+~~~~~~~~~~~~~~~~~~~~~~~
+When there is files with checksums in the main window, those checksums can be
+verified against checksums of actual files in disk. Select _Checksums |
+Verify All_ from the main menu or click verify icon from the toolbar.
+
+The tool compares checksums in the main window and checksums calculated from
+files in the disk. If the checksums are identical, *OK* text is added to
+_Verified_ column in the main window. After all files are checked message is
+shown if all files were verified OK or not.
+
+NOTE: Verifying might take some time if files are big.
+
+Adding Files to the List
+~~~~~~~~~~~~~~~~~~~~~~~~
+There are two ways to add new files to the list:
+
+- selecting single files to add
+- add all files in folder (and subfolders)
+
+Single files can be added by selecting _File | Add Files..._ from the main menu
+or from toolbar. This adds only the files selected in the dialog.
+
+All files in the folder can be added by selecting _File | Add Folder..._ from
+the main menu. This adds all files in the selected folder. If the selectec
+folder contains any subfolders, user is asked if files in those subfolders
+should be added also. Answering _No_ tho the guestion adds only the selected
+folder. Answering _Yes_ adds all files in all the subfolders too.
+
+Saving File List to Checksum File
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+When the main window contains list of files which have checksums calculated,
+they can be saved to checksum file. Select _File | Save_ or _File |
+Save As..._ from the main menu. Select the filename and location for the file.
+
+NOTE: While you can change filename extension, you cannot change the checksum
+type in this dialog. Changing the filename extension might cause problems for
+this tool and other programs reading the file.
+
+Installing
+----------
+
+Prerequisities
+~~~~~~~~~~~~~~
+CheckSum Tool requires:
+
+- Windows operating system
+- .Net 4.0 framework or later installed
+
+Download links for the .Net 4.0 framework:
+
+- http://www.microsoft.com/downloads/en/details.aspx?FamilyID=9cfb2d51-5ff4-4491-b0e5-b386f32c0992[.Net framework 4.0 web installer]
+- http://www.microsoft.com/downloads/en/details.aspx?FamilyID=0a391abd-25c1-4fc0-919f-b21f31ab88b7[.Net framework 4.0 standalone installer]
+
+Using the Installer
+~~~~~~~~~~~~~~~~~~~
+The easiest way to install CheckSum Tool is to download and run the installer
+executable from http://checksumtool.sourceforge.net[]. The installer checks
+if the required .Net 4.0 runtime (or later) is installed. If the .Net framework
+cannot be found, the installer aborts.
+
+Running the installer copies program- and documentation files to the system
+and adds the tool to Windows Start-menu.
+
+Using the Archive Files
+~~~~~~~~~~~~~~~~~~~~~~~
+The another way to install CheckSum Tool is to download binary archive file and
+extract files in it to some folder. All required files are in the archive file
+and CheckSum Tool can be run from the folder where the binary file was
+extracted.
+
+Binary archive files can be downloaded from 
+http://sourceforge.net/project/showfiles.php?group_id=208291[CheckSum Tool's downloads].
+Files are named +CheckSumTool-version-bin.zip+, for example
++CheckSumTool-0.8.0-bin.zip+.
+
+About the Checksums
+-------------------
+Checksums for files (or practically for any data) are numbers that are
+calculated from the given data using one-direction algorithm. One-direction
+algorithm means that one can calculate a checksum for the data. But the data
+cannot be determined from the checksum.
+
+The algorithm is designed so that every possible data provides its own unique
+checksum. That means there should not be possibility for two files with the
+same checksum. With some older algorithms those duplicates are possible. With
+newest algorithms duplicates are not possible in practice.
+
+Naming of the CheckSum Tool can be a bit misleading - strictly speaking MD_x_
+and SHA-_x_ are not checksums but cryptographic hashes. But generally speaking
+they can be called as checksums as they are used like traditional CRC checksums.
+
+See Wikipedia articles for:
+
+- http://en.wikipedia.org/wiki/Checksum[Checksum]
+- http://en.wikipedia.org/wiki/Hash_function[Hash functions]
+
+Wikipedia also has articles for most common checksum and hash functions. Please
+see those articles for more information.
+
+Uses for the Checksums
+~~~~~~~~~~~~~~~~~~~~~~
+The most common use for the checksums is to verify data integrity when storing
+and transferring it. If the checksums before and after the operation match,
+data has not been changed during the operation. For example FTP server can
+have checksum file next to files to download. Checksums for files in the server
+were calculated by the person putting files in the server. Now when somebody
+downloads the files and the checksum file, one can verify all files are
+correctly transferred (identical to files in the server) by calculating
+checksums for the downloaded files and comparing checksums to checksums in the
+checksum file.
+
+How CheckSum Tool helps?
+
+- it makes easy to create checksum file for your file(s)
+- it makes it easy to open checksum file and verify files in disk match to
+  checksums in checksum file
+
+
+Using the CheckSum Tool
+-----------------------
+The main window is where almost all the work happens. As described in the 
+<<QuickStartCh,Quick Start>> -chapter, it contains list of files for which to
+calculate and/or verify checksum.
+
+.The main window
+image:Images/MainWindow1.png[Main Window]
+
+The File List
+~~~~~~~~~~~~~
+
+The file list shows files processed and their related information, including
+the checksum. Visible columns and their data are:
+
+- File's filename
+- File's checksum, which can be:
+  * loaded from the checksum file
+  * calculated from the file in the disk
+- Verification status, which can be:
+  * empty - not yet verified
+  * *OK* - checksum matches to the file in the disk
+  * *FAIL* - checksum does not match the file in the disk
+- Full path to the file
+- Size of the file
+
+The checksum is shown as a hexadecimal string. The length of the checksum
+depends on the checksum type.
+
+Calculating Checksums
+~~~~~~~~~~~~~~~~~~~~~
+First select the checksum type from the toolbar. Note that when checksum type
+is changed all checksums from the list are cleared.
+
+Checksums for the files in the list are calculated by selecting the _Calculate_
+feature (from the toolbar or from the _CheckSums_ menu). After the checksums
+for all files are calculated, they are added to the list. Length of the
+checksum varies by used algorithm.
+
+Verifying Checksums
+~~~~~~~~~~~~~~~~~~~
+Checksums in the list can be verified by selecting the _Verify_ feature (from
+the toolbar or the menu). If one or more files do not have checksum in the list,
+those files are not verified (as there is nothing to verify).
+
+When all files (that can be verified) are verified, verification status (*Ok*
+or *FAIL* is added to the list.
+
+.Verified Checksums
+image:Images/MainWindow_verifiedok.png[Successful verification]
+
+Loading Checksum file
+~~~~~~~~~~~~~~~~~~~~~
+Existing checksum file can be loaded by selecting _File | Open_ from main menu
+or clicking the _Open_ button in the toolbar. In the dialog, browse for and
+select the checksum file to open. The filename must contain or have an
+extension one of +sfv+, +md5+ or +sha1+. Otherwise CheckSum Tool does not
+recognize the file type. (_This will be improved in later versions._)
+
+CheckSum Tool considers lines that begin with semicolon (+;+) in checksum file
+as comment lines and ignores them. E.g. line +; Created 1/4/2008 1:23:17 AM+ is
+ignored.
+
+Saving Checksum file
+~~~~~~~~~~~~~~~~~~~~~
+When one or more files have calculated checksums in the list, they can be saved
+to the checksum file. Only files that have checksum calculated are added to the
+file. Verification status is not added.
+
+Files in the same folder than or in the subfolders of checksum file are stored
+with relative path. Files in other folders are stored with absolute path.
+
+Select _File | Save_ or _File | Save As..._ from the main menu. Select the
+filename and location for the file in the dialog. It is recommeded to use file
+extensions that the dialog suggests:
+
+- +sfv+ for CRC32 files
+- +md5+ for MD5 files
+- +sha1+ for SHA-1 files
+
+Using these file extensions makes sure CheckSum tool (and many other tools)
+recognize the file type.
+
+Support
+-------
+There are several ways to get answers to questions:
+
+.Discussion forums
+Two different http://sourceforge.net/forum/?group_id=208291[discussion forums]
+are available.
+
+.Mailing list
+http://sourceforge.net/mail/?group_id=208291[Support-list] is one of the
+mailing lists.
+
+.Bug report
+Bug reports should be submitted to 
+http://sourceforge.net/tracker/?group_id=208291&atid=1005105[bug tracker].
+
+.Feature request
+Suggestions for new features should be submitted to
+https://sourceforge.net/tracker/?group_id=208291&atid=1005108[Feature requests]
+tracker.

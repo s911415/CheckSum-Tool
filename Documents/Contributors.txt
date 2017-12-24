@@ -1,0 +1,16 @@
+
+People who have contributed to CheckSum Tool
+--------------------------------------------
+
+Project admin, main developer:
+Kimmo Varis (kimmov at gmail.com and kimmo.varis at ixonos.com)
+
+Contributors:
+Tim Gerundt (tim at gerundt.de)
+
+Past developers:
+Jalmari Lehto (jalmari.lehto at ixonos.com)
+
+Menu/Toolbar "SILK ICONS" from FAMFAMFAM
+http://www.famfamfam.com/lab/icons/silk/
+Licensed under Creative Commons Attribution 2.5 License

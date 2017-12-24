@@ -1,0 +1,105 @@
+This file list changes done in each version of the CheckSum Tool.
+
+Numbers in parentheses mean either SourceForge.net tracker item number (#xxxxxxx)
+or Subversion repository revision (rxxx).
+
+CheckSum Tool 0.7.0 - 2011-03-15
+  Move code to Mercurial repository at Bitbucket
+  Require .Net 4.0 and C# 4.0
+  Require VS 2010 (Express) or SharpDevelop 4.0
+  Add #if for including unit tests only for debug builds
+  Don't hide Maximize button in application main window
+  Add progress dialog
+  Update copyrights to 2011
+  Disable Exit-item in File-menu when processing items
+  Center About-dialog to main window
+  Add View-menu items to select which kind of items to show
+  Show progress at taskbar icon in Windows 7
+  Start using MSbuild to build CheckSum Tool
+  Remove NAnt build file
+  Bugfix: Fix crash when adding lots of files (#2951908)
+  Bugfix: Calculate-toolbar button was not disabled when processing items
+  Bugfix: Changing sum type cleared calculated sums without warning
+
+CheckSum Tool 0.6.0 - 2009-05-07 (r269)
+  Split code to two additional libraries (SumLib and Utils).
+  Installer: install new library files (r267)
+  Allow drag&drop files from Windows Explorer
+  Allow drag&drop folders from Windows Explorer
+  Installer: Prevent starting second instance
+  Enable Verify-feature only when there are checksums in the list (r261)
+  Enable Calculate-feature only when there are items in the list (r262)
+  Ask if user wants to save unsaved items before loading new list (r263)
+  Update new forums URL to readme file (r268)
+  Bugfix: Product name was wrong (without space) in About-dialog.
+  Bugfix: Adding large file (over 2 GB) caused a crash (r259)
+
+CheckSum Tool 0.5.0 - 2008-04-27 (r217)
+  New toolbar/menuitem icons from famfamfam.com (#1883992)
+  Ask adding files in all subfolders of the selected folder.
+  Save configuration to XML file (window size/position, toolbars)
+  Add second toolbar for checksum-related buttons
+  New list column named "Size", showing file size.
+  Add ProgressBar for showing process progress.
+  Improve file size formatting in main window.
+  Make configuration XML file more structured.
+  Add version number for the configuration file.
+  Improve message asking about adding subfolders.
+  Change config file folder to %APPDATA%/ChecksumTool/
+  Added default config file to the installer.
+  Copy default config file to distribution in NAnt build file.
+  Bugfix: Fix updating item count in the statusbar.
+  Bugfix: NAnt build was broken after adding Src/Settings folder.
+
+CheckSum Tool 0.4.0 - 2008-02-05 (r158)
+  Add Select All to Edit-menu (also CTRL+A shortcut key)
+  Add Copy -item to Edit-menu (copies checksums to clipboard)
+  Add Help / Contributors menu item to main menu for opening contributors list
+  Add missing mnemonic characters to menu items
+  Show error message for items not having checksum or file not found when verifying
+  Allow relative paths in checksum files
+  Installer: Include ChangeLog.txt and Contributors.txt in installer.
+  Installer: Add version resource info for installer executable file.
+  Clarify copyright - it is Kimmo and Ixonos.
+  Allow moving and docking of toolbar
+  Manual: Mention relative paths shortly in context of saving files.
+  Bugfix: First load of other than default (SHA-1) sum file failed to load sums
+
+CheckSum Tool 0.3.0 - 2008-01-07 (r107)
+  Manual: Add initial version of user manual (in html format)
+  Add manual item to Help-menu
+  Rename About-menu to Help-menu
+  Try to detemine file's type from filename when opening checksum file
+  Add titles to Open- and Save As-dialogs
+  Make verified status three-state (not verified, verified OK and verify failed)
+  Installer: Exit install if required DotNet version is not found
+  Installer: Install user manual
+  Update copyright year to contain 2008 in About-dialog and in documents
+  Disable Save-button in toolbar and Save-item in File-menu when list has no changes
+  Add Checksum types to CheckSums-menu
+  Add star to program title when filelist is changed
+  Bugfix: Don't add space to installer executable filename
+  Bugfix: Run installer task from correct place when doing distribution
+  Bugfix: Sometimes all files in list were not saved to checksum file
+  Bugfix: Reset filename after changing checksum type (don't overwrite file)
+
+CheckSum Tool 0.2.0 - 2007-12-18 (r57)
+  Added current filename to program title
+  Keep track of current filename, ask filename only if not previously selected
+  Add menuitems for creating new file and saving file with new filename (save As)
+  Added unit tests for SHA1-, MD5- and CRC32- calculation and verification
+  Improved NAnt build file by reorganizing targets
+  Added NAnt "distribution" target for building a distribution from SVN
+  Bugfix: CRC32 sum was not calculated or verified correctly (found by unit tests)
+
+CheckSum Tool 0.1.0 - 2007-12-04 (r37)
+  First version added to the SourceForge.net
+  Support for CRC32, MD5 and SHA-1 checksum types
+  Can save list of checksums to file (simple CSV file)
+  Can load a list of checksum from file (simple CSV file)
+  Can verify filenames found from same folder against list of checksums
+  Loads and saves CRC32-sums in .SFV files
+  Loads and saves MD5-sums in .MD5 files
+  Loads and saves SHA-1 sums in .SHA1 files
+  Simple installer for installing files and creating start menu items
+  Installer checks if .Net 2.0 is installed - and downloads and installs it if needed
